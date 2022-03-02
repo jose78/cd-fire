@@ -56,7 +56,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(user)
+		
 		return ctx.SendString(user.Email)
 	})
 	app.Get("/logout", func(ctx *fiber.Ctx) error {

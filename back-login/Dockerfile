@@ -19,7 +19,6 @@ RUN go get github.com/go-delve/delve/cmd/dlv
 WORKDIR /go/src/work
 COPY . /go/src/work/
 
-RUN go build -o app
 
 ###########START NEW IMAGE###################
 
