@@ -11,14 +11,8 @@ RUN apk update && apk upgrade && \
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
-RUN go get github.com/sirupsen/logrus
-RUN go get github.com/buaazp/fasthttprouter
-RUN go get github.com/valyala/fasthttp
-RUN go get github.com/go-delve/delve/cmd/dlv
-
 WORKDIR /go/src/work
 COPY . /go/src/work/
-
 
 ###########START NEW IMAGE###################
 
