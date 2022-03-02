@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+        repo-manager:
+                container_name: repo-manager
+                image: "build-image:1.0"
+                
+
+                context: back-login
+                dockerfile: Dockerfile-dev
+                ports:
+                - "8080:80"
