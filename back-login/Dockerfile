@@ -1,21 +1,13 @@
-FROM golang:1.12.5-alpine3.9 as debug
-
-# installing git
-RUN apk update && apk upgrade && \
-    apk add --no-cache git \
-        dpkg \
-        gcc \
-        git \
-        musl-dev
-
+###########BUILD APP###################
+FROM golang:1.17.7-alpine3.15 as builder
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-
 WORKDIR /go/src/work
 COPY . /go/src/work/
+RUN go get -u -v -f all
+RUN go build -o app
 
-###########START NEW IMAGE###################
-
+###########START APP###################
 FROM alpine:3.9 as prod
-COPY --from=debug /go/src/work/app /
+COPY --from=builder /go/src/work/app /
 CMD ./app

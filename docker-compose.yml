@@ -1,11 +1,22 @@
 version: "3.9"
-services:
-        repo-manager:
-                container_name: repo-manager
-                image: "build-image:1.0"
-                
 
-                context: back-login
-                dockerfile: Dockerfile-dev
+services:
+        gateway:
+                image: nginx
                 ports:
                 - "8080:80"
+                volumes:
+                - "./gateway/nginx.conf:/etc/nginx/nginx.conf"
+                environment:
+                        - HOST_BACK_LOGIN="back-login:8080"
+        back-login:
+                container_name: back-login
+                image: "cd-fire-login:1.0"
+                hostname: back-login
+                domainname: back-login.local
+                build:
+                        context: back-login
+                ports:
+                - "8080"
+
+

@@ -15,7 +15,7 @@
 						<Row>
 							<Col md="4">
 								<h4>
-									<a href="http://localhost:9095/login/github">
+									<a href="http://localhost:9090/api/repo/login/github">
 										<Badge>Login with <Icon
 											name="github"/>
 										</Badge>

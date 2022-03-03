@@ -46,7 +46,7 @@ func main() {
 		KeyGenerator:   utils.UUIDv4,
 	})
 	goth.UseProviders(
-		github.New(clientID, clientSecret, "http://localhost:9095/auth/callback/github"),
+		github.New(clientID, clientSecret, "http://localhost:8080/auth/callback/github"),
 	)
 	// e36f57adcb81d0361b69e8150b48a5689ec955de
 	app.Get("/login/:provider", goth_fiber.BeginAuthHandler)
@@ -56,7 +56,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		
+
 		return ctx.SendString(user.Email)
 	})
 	app.Get("/logout", func(ctx *fiber.Ctx) error {
@@ -67,7 +67,7 @@ func main() {
 		return ctx.SendString("logout")
 	})
 
-	if err := app.Listen(":9095"); err != nil {
+	if err := app.Listen(":8080"); err != nil {
 		log.Fatal(err)
 	}
 }
